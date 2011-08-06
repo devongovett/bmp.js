@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas></canvas>
+<script src="bmp.js"></script>
+<script>
+    var canvas = document.getElementsByTagName('canvas')[0];
+    function render(bmp) {
+        canvas.width = bmp.width;
+        canvas.height = bmp.height;
+        
+        var ctx = canvas.getContext("2d");
+        var data = ctx.getImageData(0, 0, bmp.width, bmp.height);
+        
+        bmp.copyToImageData(data);
+        ctx.putImageData(data, 0, 0);
+    }
+    
+    BMP.load('test.bmp', render);
+</script>
+</body>
+</html>
